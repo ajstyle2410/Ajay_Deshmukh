@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import {  HostListener } from '@angular/core';
 import { Router, RouterModule, NavigationEnd } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import {
   LucideAngularModule,
+  LucideIconData,
   LayoutDashboard,
   ShoppingCart,
   Package,
@@ -27,7 +29,7 @@ export class SliderBar {
   isMobileOpen = false;
   openMenu: string | null = null;
 
-  icons = {
+  icons: { [key: string]: LucideIconData } = {
     dashboard: LayoutDashboard,
     orders: ShoppingCart,
     products: Package,
@@ -40,7 +42,8 @@ export class SliderBar {
     arrow: ChevronDown
   };
 
-  { label: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
+  menuItems = [
+    { label: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
     { label: 'Orders', icon: 'orders', route: '/orders', badge: 18 },
     {
       label: 'Products',
@@ -76,7 +79,7 @@ export class SliderBar {
 
   constructor(private router: Router) {
     // auto expand based on active route
-    this.router.events.pipe(filter(e => e instanceof NavigationEnd))
+    this.router.events.pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
       .subscribe(() => this.autoExpand());
   }
 
