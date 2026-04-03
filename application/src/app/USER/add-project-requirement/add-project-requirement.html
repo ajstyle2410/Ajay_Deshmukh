@@ -1,0 +1,150 @@
+<div class="min-h-screen bg-slate-100 p-6">
+  <div class="max-w-5xl mx-auto">
+
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">Add Project Requirement</h1>
+      <p class="text-gray-500 mt-2">
+        Fill in your project details and requirements properly.
+      </p>
+    </div>
+
+    <!-- Form Card -->
+    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="space-y-6">
+
+        <!-- Row 1 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Project Title -->
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">
+              Project Title <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              formControlName="title"
+              placeholder="Enter project title"
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-[#2596be]/30 focus:border-[#2596be]"
+            />
+            <p *ngIf="f['title'].touched && f['title'].invalid" class="text-red-500 text-sm mt-1">
+              Project title is required (minimum 3 characters).
+            </p>
+          </div>
+
+          <!-- Project Type -->
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">
+              Project Type <span class="text-red-500">*</span>
+            </label>
+            <select
+              formControlName="projectType"
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-[#2596be]/30 focus:border-[#2596be]"
+            >
+              <option value="">Select project type</option>
+              <option *ngFor="let type of projectTypes" [value]="type">{{ type }}</option>
+            </select>
+            <p *ngIf="f['projectType'].touched && f['projectType'].invalid" class="text-red-500 text-sm mt-1">
+              Project type is required.
+            </p>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">
+            Project Description <span class="text-red-500">*</span>
+          </label>
+          <textarea
+            rows="4"
+            formControlName="description"
+            placeholder="Write project overview..."
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-[#2596be]/30 focus:border-[#2596be]"
+          ></textarea>
+          <p *ngIf="f['description'].touched && f['description'].invalid" class="text-red-500 text-sm mt-1">
+            Description is required (minimum 10 characters).
+          </p>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Technology -->
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">
+              Technology <span class="text-red-500">*</span>
+            </label>
+            <select
+              formControlName="technology"
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-[#2596be]/30 focus:border-[#2596be]"
+            >
+              <option value="">Select technology</option>
+              <option *ngFor="let tech of technologies" [value]="tech">{{ tech }}</option>
+            </select>
+            <p *ngIf="f['technology'].touched && f['technology'].invalid" class="text-red-500 text-sm mt-1">
+              Technology is required.
+            </p>
+          </div>
+
+          <!-- Deadline -->
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">
+              Deadline <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="date"
+              formControlName="deadline"
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-[#2596be]/30 focus:border-[#2596be]"
+            />
+            <p *ngIf="f['deadline'].touched && f['deadline'].invalid" class="text-red-500 text-sm mt-1">
+              Deadline is required.
+            </p>
+          </div>
+
+          <!-- Priority -->
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">
+              Priority <span class="text-red-500">*</span>
+            </label>
+            <select
+              formControlName="priority"
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-[#2596be]/30 focus:border-[#2596be]"
+            >
+              <option value="">Select priority</option>
+              <option *ngFor="let p of priorities" [value]="p">{{ p }}</option>
+            </select>
+            <p *ngIf="f['priority'].touched && f['priority'].invalid" class="text-red-500 text-sm mt-1">
+              Priority is required.
+            </p>
+          </div>
+        </div>
+
+
+        <!-- Requirements -->
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">
+            Project Requirements / Features <span class="text-red-500">*</span>
+          </label>
+          <textarea
+            rows="5"
+            formControlName="requirements"
+            placeholder="Example: Login system, admin dashboard, payment integration, reports..."
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-[#2596be]/30 focus:border-[#2596be]"
+          ></textarea>
+          <p *ngIf="f['requirements'].touched && f['requirements'].invalid" class="text-red-500 text-sm mt-1">
+            Requirements are required (minimum 10 characters).
+          </p>
+        </div>
+
+        <!-- Submit -->
+        <div class="pt-4">
+          <button
+            type="submit"
+            class="px-8 py-3 rounded-xl bg-[#4273e9] text-white font-semibold hover:bg-[#2596be] transition-all shadow-sm"
+          >
+            Submit Requirement
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
