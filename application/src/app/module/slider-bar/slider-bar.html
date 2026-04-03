@@ -1,0 +1,116 @@
+<!-- Mobile Overlay -->
+<div *ngIf="isMobileOpen"
+     (click)="toggleMobile()"
+     class="fixed inset-0 bg-black/40 z-40 md:hidden"></div>
+
+<!-- Sidebar -->
+<aside
+  class="fixed md:static z-50 top-0 left-0 h-full w-[280px] bg-white shadow-xl transform transition-transform duration-300
+  md:translate-x-0"
+  [class.translate-x-0]="isMobileOpen"
+  [class.-translate-x-full]="!isMobileOpen"
+>
+
+  <div class="h-full flex flex-col px-6 py-5">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-bold text-gray-900">Infinitekala</h1>
+
+      <!-- Mobile Close -->
+      <button class="md:hidden text-gray-500" (click)="toggleMobile()">✕</button>
+    </div>
+
+    <!-- Menu -->
+    <nav class="space-y-2">
+
+      <div *ngFor="let item of menuItems">
+
+        <!-- Simple Link -->
+        <a *ngIf="item.route"
+           [routerLink]="item.route"
+           routerLinkActive="bg-[#4273e9]/10 text-[#4273e9] font-semibold border-l-4 border-[#2596be]"
+           class="flex items-center justify-between px-4 py-3 rounded-xl text-gray-700 hover:bg-[#4273e9]/10 hover:text-[#4273e9] transition">
+
+          <div class="flex items-center gap-3">
+            <lucide-icon [img]="icons[item.icon]" class="w-5 h-5"></lucide-icon>
+            <span>{{ item.label }}</span>
+          </div>
+
+          <span *ngIf="item.badge"
+                class="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
+            {{ item.badge }}
+          </span>
+        </a>
+
+        <!-- Dropdown -->
+        <div *ngIf="item.children">
+
+          <button
+            (click)="toggleMenu(item.label)"
+            class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-gray-700 hover:bg-[#4273e9]/10 hover:text-[#4273e9] transition">
+
+            <div class="flex items-center gap-3">
+              <lucide-icon [img]="icons[item.icon]" class="w-5 h-5"></lucide-icon>
+              <span>{{ item.label }}</span>
+            </div>
+
+            <lucide-icon
+              [img]="icons.arrow"
+              class="w-4 h-4 transition-transform"
+              [class.rotate-180]="openMenu === item.label">
+            </lucide-icon>
+          </button>
+
+          <!-- Submenu -->
+          <div *ngIf="openMenu === item.label"
+               class="ml-10 mt-2 space-y-2">
+
+            <a *ngFor="let child of item.children"
+               [routerLink]="child.route"
+               routerLinkActive="text-[#4273e9] font-semibold"
+               class="block text-sm text-gray-500 hover:text-[#2596be] transition">
+              {{ child.label }}
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- Divider -->
+    <div class="border-t my-6"></div>
+
+    <!-- Sales Channels -->
+    <nav class="space-y-2">
+      <a *ngFor="let item of salesChannels"
+         [routerLink]="item.route"
+         routerLinkActive="bg-[#4273e9]/10 text-[#4273e9]"
+         class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-[#4273e9]/10 hover:text-[#4273e9] transition">
+
+        <lucide-icon [img]="icons[item.icon]" class="w-5 h-5"></lucide-icon>
+        <span>{{ item.label }}</span>
+      </a>
+    </nav>
+
+    <div class="flex-1"></div>
+
+    <!-- Settings -->
+    <a routerLink="/settings"
+       class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-[#4273e9]/10 hover:text-[#4273e9] transition">
+
+      <lucide-icon [img]="icons.settings" class="w-5 h-5"></lucide-icon>
+      <span>Settings</span>
+    </a>
+
+  </div>
+</aside>
+
+<!-- Mobile Toggle Button -->
+<button
+  (click)="toggleMobile()"
+  class="md:hidden fixed top-4 left-4 z-50 bg-white shadow px-3 py-2 rounded-lg">
+  ☰
+</button>
