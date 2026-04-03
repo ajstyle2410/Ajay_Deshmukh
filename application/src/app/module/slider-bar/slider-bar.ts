@@ -2,26 +2,13 @@ import { Component } from '@angular/core';
 import {  HostListener } from '@angular/core';
 import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {
-  LucideAngularModule,
-  LucideIconData,
-  LayoutDashboard,
-  ShoppingCart,
-  Package,
-  BarChart3,
-  Users,
-  Globe,
-  Instagram,
-  Facebook,
-  Settings,
-  ChevronDown
-} from 'lucide-angular';
+
 import { filter } from 'rxjs/operators';
 
 
 @Component({
   selector: 'app-slider-bar',
-  imports: [CommonModule, RouterModule, LucideAngularModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './slider-bar.html',
   styleUrl: './slider-bar.css',
 })
@@ -29,25 +16,12 @@ export class SliderBar {
   isMobileOpen = false;
   openMenu: string | null = null;
 
-  icons: { [key: string]: LucideIconData } = {
-    dashboard: LayoutDashboard,
-    orders: ShoppingCart,
-    products: Package,
-    reports: BarChart3,
-    customers: Users,
-    website: Globe,
-    instagram: Instagram,
-    facebook: Facebook,
-    settings: Settings,
-    arrow: ChevronDown
-  };
 
   menuItems = [
-    { label: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
-    { label: 'Orders', icon: 'orders', route: '/orders', badge: 18 },
+    { label: 'Dashboard', route: '/dashboard' },
+    { label: 'Orders', route: '/orders', badge: 18 },
     {
       label: 'Products',
-      icon: 'products',
       children: [
         { label: 'All Products', route: '/products/all' },
         { label: 'Add Product', route: '/products/add' }
@@ -55,7 +29,6 @@ export class SliderBar {
     },
     {
       label: 'Reports',
-      icon: 'reports',
       children: [
         { label: 'Sales Report', route: '/reports/sales' },
         { label: 'Revenue Report', route: '/reports/revenue' }
@@ -63,7 +36,6 @@ export class SliderBar {
     },
     {
       label: 'Customers',
-      icon: 'customers',
       children: [
         { label: 'All Customers', route: '/customers/all' },
         { label: 'Feedback', route: '/customers/feedback' }
@@ -72,9 +44,9 @@ export class SliderBar {
   ];
 
   salesChannels = [
-    { label: 'Website', icon: 'website', route: '/website' },
-    { label: 'Instagram', icon: 'instagram', route: '/instagram' },
-    { label: 'Facebook', icon: 'facebook', route: '/facebook' }
+    { label: 'Website', route: '/website' },
+    { label: 'Instagram', route: '/instagram' },
+    { label: 'Facebook', route: '/facebook' }
   ];
 
   constructor(private router: Router) {

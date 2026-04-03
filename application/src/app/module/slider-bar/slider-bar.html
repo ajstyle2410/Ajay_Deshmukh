@@ -33,7 +33,7 @@
            class="flex items-center justify-between px-4 py-3 rounded-xl text-gray-700 hover:bg-[#4273e9]/10 hover:text-[#4273e9] transition">
 
           <div class="flex items-center gap-3">
-            <lucide-icon [img]="icons[item.icon]" class="w-5 h-5"></lucide-icon>
+
             <span>{{ item.label }}</span>
           </div>
 
@@ -51,15 +51,11 @@
             class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-gray-700 hover:bg-[#4273e9]/10 hover:text-[#4273e9] transition">
 
             <div class="flex items-center gap-3">
-              <lucide-icon [img]="icons[item.icon]" class="w-5 h-5"></lucide-icon>
+
               <span>{{ item.label }}</span>
             </div>
 
-            <lucide-icon
-              [img]="icons['arrow']"
-              class="w-4 h-4 transition-transform"
-              [class.rotate-180]="openMenu === item.label">
-            </lucide-icon>
+
           </button>
 
           <!-- Submenu -->
