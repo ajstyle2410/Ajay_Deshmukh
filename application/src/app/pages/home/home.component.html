@@ -1,88 +1,169 @@
-<div class="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-  <!-- Header/Navigation -->
-  <header class="sticky top-0 z-40 bg-white shadow-sm">
-    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
-          A
-        </div>
-        <h1 class="text-2xl font-bold text-gray-900">Arc-i-Tech</h1>
-      </div>
-      <div class="hidden md:flex items-center gap-6">
-        <a routerLink="/" class="text-gray-600 hover:text-blue-600 transition">Home</a>
-        <a routerLink="/services" class="text-gray-600 hover:text-blue-600 transition">Services</a>
-        <a routerLink="/about" class="text-gray-600 hover:text-blue-600 transition">About</a>
-        <a routerLink="/contact" class="text-gray-600 hover:text-blue-600 transition">Contact</a>
-      </div>
-    </nav>
-  </header>
+<app-navbar></app-navbar>
 
-  <!-- Hero Section -->
-  <section class="max-w-7xl mx-auto px-6 py-20">
-    <div class="text-center mb-16">
-      <h2 class="text-5xl font-bold text-gray-900 mb-6">
-        Innovative Tech Solutions for Your Business
-      </h2>
-      <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-        Arc-i-Tech connects businesses with cutting-edge software development and technical services. 
-        Track your projects, explore our services, and grow together with us.
-      </p>
-      <button routerLink="/services" class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-lg font-semibold">
+<!-- ─── HERO SECTION ─── -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge animate-fadeInUp">
+      <span class="badge-dot"></span>
+      Innovative Tech Solutions
+    </div>
+
+    <h1 class="hero-title animate-fadeInUp delay-100">
+      Build. Grow. <span class="gradient-text">Succeed</span><br>with Arc-i-Tech
+    </h1>
+
+    <p class="hero-subtitle animate-fadeInUp delay-200">
+      Your trusted partner for software development, project mentorship, and career growth.
+      Connect with clients, track progress, and unlock your potential.
+    </p>
+
+    <div class="hero-actions animate-fadeInUp delay-300">
+      <a routerLink="/services" class="btn-primary">
         Explore Services
-      </button>
+        <lucide-icon [img]="ArrowRightIcon" class="btn-icon"></lucide-icon>
+      </a>
+      <a routerLink="/contact" class="btn-outline">
+        Get In Touch
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS BAR ─── -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div *ngFor="let stat of stats; let i = index" class="stat-item animate-fadeInUp" [style.animation-delay]="(i * 0.1) + 's'">
+      <div class="stat-icon-wrap">
+        <lucide-icon [img]="stat.icon" class="stat-icon"></lucide-icon>
+      </div>
+      <div class="stat-number">{{ stat.value }}</div>
+      <div class="stat-label">{{ stat.label }}</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES SECTION ─── -->
+<section class="services-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">What We Offer</h2>
+      <p class="section-subtitle">
+        From software development to career mentorship — we have everything you need to thrive.
+      </p>
     </div>
 
-    <!-- Services Grid -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
-      <div *ngFor="let service of services" 
-           class="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 p-6 cursor-pointer hover:border-blue-300 border-2 border-transparent group hover:scale-105 transform">
-        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-200 group-hover:scale-110 transition-all duration-300">
-          <span class="text-blue-600 font-bold text-lg">○</span>
+    <div class="services-grid">
+      <a *ngFor="let service of services; let i = index"
+         [routerLink]="['/service', service.id]"
+         class="service-card animate-fadeInUp"
+         [style.animation-delay]="(i * 0.07) + 's'">
+        <div class="service-icon-wrap" [style.background]="service.bgColor">
+          <lucide-icon [img]="service.icon" class="service-icon" [style.color]="service.color"></lucide-icon>
         </div>
-        <h3 class="font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">{{ service.title }}</h3>
-        <p class="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300">{{ service.description }}</p>
-        <a [routerLink]="['/service', service.id]" class="mt-4 inline-block text-blue-600 hover:text-blue-700 font-medium text-sm group-hover:font-semibold transition-all duration-300">
-          Learn More →
-        </a>
+        <h3 class="service-title">{{ service.title }}</h3>
+        <p class="service-desc">{{ service.description }}</p>
+        <span class="service-link" [style.color]="service.color">
+          Learn More
+          <lucide-icon [img]="ChevronRightIcon" class="chevron-icon"></lucide-icon>
+        </span>
+      </a>
+    </div>
+
+    <div class="view-all-wrap">
+      <a routerLink="/services" class="btn-primary">
+        View All Services
+        <lucide-icon [img]="ArrowRightIcon" class="btn-icon"></lucide-icon>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY CHOOSE US ─── -->
+<section class="why-section">
+  <div class="container">
+    <div class="section-header why-header">
+      <h2 class="section-title light">Why Choose Arc-i-Tech?</h2>
+      <p class="section-subtitle light">We don't just deliver projects — we build lasting partnerships.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon-wrap">
+          <lucide-icon [img]="RocketIcon" class="why-icon"></lucide-icon>
+        </div>
+        <h3>Fast &amp; Reliable</h3>
+        <p>Quick turnaround times without ever compromising quality or best practices.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon-wrap">
+          <lucide-icon [img]="StarIcon" class="why-icon"></lucide-icon>
+        </div>
+        <h3>Expert Team</h3>
+        <p>Experienced professionals with proven track records across diverse technologies.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon-wrap">
+          <lucide-icon [img]="RocketIcon" class="why-icon"></lucide-icon>
+        </div>
+        <h3>Transparent Process</h3>
+        <p>Track your project progress with one click. No surprises, just results.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon-wrap">
+          <lucide-icon [img]="StarIcon" class="why-icon"></lucide-icon>
+        </div>
+        <h3>Customer First</h3>
+        <p>We closely work with you to understand your needs and deliver tailored solutions.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Features Section -->
-  <section class="bg-gray-900 text-white py-16">
-    <div class="max-w-7xl mx-auto px-6">
-      <h3 class="text-3xl font-bold text-center mb-12">Why Choose Arc-i-Tech?</h3>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="text-center group hover:scale-105 transform transition-all duration-300">
-          <h4 class="text-xl font-semibold mb-2 group-hover:text-blue-300 transition-colors duration-300">Fast & Reliable</h4>
-          <p class="text-gray-300 group-hover:text-gray-100 transition-colors duration-300">Quick turnaround times without compromising quality</p>
+<!-- ─── TESTIMONIALS ─── -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">What Our Clients Say</h2>
+      <p class="section-subtitle">Real stories from real people who've experienced the Arc-i-Tech difference.</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div *ngFor="let t of testimonials; let i = index" class="testimonial-card animate-fadeInUp" [style.animation-delay]="(i * 0.15) + 's'">
+        <div class="stars">
+          <span *ngFor="let s of [1,2,3,4,5]">⭐</span>
         </div>
-        <div class="text-center group hover:scale-105 transform transition-all duration-300">
-          <h4 class="text-xl font-semibold mb-2 group-hover:text-blue-300 transition-colors duration-300">Expert Team</h4>
-          <p class="text-gray-300 group-hover:text-gray-100 transition-colors duration-300">Experienced professionals dedicated to your success</p>
-        </div>
-        <div class="text-center group hover:scale-105 transform transition-all duration-300">
-          <h4 class="text-xl font-semibold mb-2 group-hover:text-blue-300 transition-colors duration-300">Transparent Communication</h4>
-          <p class="text-gray-300 group-hover:text-gray-100 transition-colors duration-300">Track your project progress with one click</p>
+        <p class="testimonial-text">"{{ t.text }}"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">{{ t.name[0] }}</div>
+          <div>
+            <div class="author-name">{{ t.name }}</div>
+            <div class="author-role">{{ t.role }}</div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CTA Section -->
-  <section class="max-w-7xl mx-auto px-6 py-16 text-center">
-    <h3 class="text-3xl font-bold text-gray-900 mb-4">Ready to Start Your Project?</h3>
-    <p class="text-gray-600 mb-8">Get in touch with our team today</p>
-    <a routerLink="/contact" class="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 font-semibold hover:shadow-lg hover:scale-105 transform">
-      Contact Us
-    </a>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-300 py-8">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <p>&copy; 2026 Arc-i-Tech. All rights reserved.</p>
-      <p class="text-sm mt-2">Connecting Businesses with Innovative Tech Solutions</p>
+<!-- ─── CTA SECTION ─── -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2 class="cta-title">Ready to Start Your Project?</h2>
+    <p class="cta-sub">Let's turn your ideas into reality. Connect with our expert team today.</p>
+    <div class="cta-actions">
+      <a routerLink="/contact" class="btn-primary">
+        Get Started Now
+        <lucide-icon [img]="ArrowRightIcon" class="btn-icon"></lucide-icon>
+      </a>
+      <a routerLink="/services" class="btn-outline">
+        Browse Services
+      </a>
     </div>
-  </footer>
-</div>
+  </div>
+</section>
+
+<app-footer></app-footer>
