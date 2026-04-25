@@ -1,15 +1,15 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { HOME_ROUTES } from './features/home/home.routes';
+import { SERVICES_ROUTES } from './features/services/services.routes';
+import { ABOUT_ROUTES } from './features/about/about.routes';
+import { CONTACT_ROUTES } from './features/contact/contact.routes';
 import { ServiceDetailComponent } from './pages/service-detail/service-detail.component';
-import { ServicesListComponent } from './pages/services-list/services-list.component';
-import { ContactComponent } from './pages/contact/contact.component';
-import { AboutComponent } from './pages/about/about.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'services', component: ServicesListComponent },
+  { path: '', loadChildren: () => HOME_ROUTES },
+  { path: 'services', loadChildren: () => SERVICES_ROUTES },
   { path: 'service/:id', component: ServiceDetailComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'about', component: AboutComponent },
+  { path: 'about', loadChildren: () => ABOUT_ROUTES },
+  { path: 'contact', loadChildren: () => CONTACT_ROUTES },
   { path: '**', redirectTo: '' }
 ];

@@ -1,18 +1,18 @@
 import { Component, HostListener, signal, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterLinkActive } from '@angular/router';
-import { LucideAngularModule, Hexagon, Menu, X } from 'lucide-angular';
+import { LucideAngularModule, Menu, X } from 'lucide-angular';
+import { BrandComponent } from '../components/brand/brand.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterLinkActive, LucideAngularModule],
+  imports: [CommonModule, RouterModule, RouterLinkActive, LucideAngularModule, BrandComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  readonly HexagonIcon = Hexagon;
   readonly MenuIcon = Menu;
   readonly XIcon = X;
 

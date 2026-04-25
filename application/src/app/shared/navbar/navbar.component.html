@@ -2,10 +2,7 @@
   <div class="navbar-inner">
     <!-- Logo -->
     <a routerLink="/" class="navbar-brand" (click)="closeMobile()">
-      <div class="brand-icon-wrap">
-        <lucide-icon [img]="HexagonIcon" class="brand-icon"></lucide-icon>
-      </div>
-      <span class="brand-name">Arc-i-Tech</span>
+      <app-brand [showLogo]="true"></app-brand>
     </a>
 
     <!-- Desktop Nav Links -->

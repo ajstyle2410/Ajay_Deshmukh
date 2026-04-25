@@ -1,0 +1,87 @@
+<app-navbar></app-navbar>
+
+<div class="portal-wrapper">
+  <!-- Left Sidebar (Site Navigation) -->
+  <aside class="portal-left-sidebar">
+    <div class="sidebar-widget">
+      <h3>Company</h3>
+      <a routerLink="/" class="sidebar-link active">Dashboard Home</a>
+      <a routerLink="/about" class="sidebar-link">About Arc-i-Tech</a>
+      <a routerLink="/contact" class="sidebar-link">Get Support</a>
+      
+      <h3>Product Hub</h3>
+      <a routerLink="/services" class="sidebar-link">All Services</a>
+      <a routerLink="/service/website-development" class="sidebar-link">Web Development</a>
+      <a routerLink="/service/software-development" class="sidebar-link">Desktop Apps</a>
+      <a routerLink="/service/mobile-apps" class="sidebar-link">Mobile Apps</a>
+    </div>
+  </aside>
+
+  <!-- Center Feed -->
+  <main class="portal-main-feed">
+    
+    <div class="feed-header">
+      <h1>Engineering Solutions Feed</h1>
+      <p>Browse our integrated suite of enterprise capabilities, designed for scalability.</p>
+    </div>
+
+    <!-- Product Feed Grid -->
+    <div class="services-masonry">
+      <a *ngFor="let service of services" [routerLink]="['/service', service.id]" class="feed-card animate-fadeInUp">
+        <div class="feed-card-header">
+          <div class="icon-orb" [style.background]="service.bgColor">
+            <lucide-icon [img]="service.icon" class="feed-card-icon" [style.color]="service.color"></lucide-icon>
+          </div>
+          <span class="feed-card-badge">Professional</span>
+        </div>
+        
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+        
+        <div class="feed-card-footer">
+          <span class="read-more">View Product <lucide-icon [img]="ArrowRightIcon" class="inline-icon"></lucide-icon></span>
+        </div>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Right Sidebar (Ads / Stats) -->
+  <aside class="portal-right-sidebar">
+    
+    <!-- Promoted Ad Block -->
+    <div class="sidebar-ad">
+      <h3>Need Custom Software?</h3>
+      <p>Join top tier clients who trust our infrastructure.</p>
+      <a routerLink="/contact" class="btn-primary auth-btn">Hire the Team</a>
+    </div>
+
+    <!-- Live Stats Widget -->
+    <div class="sidebar-widget stats-widget">
+      <h3>Platform Statistics</h3>
+      <div *ngFor="let stat of stats" class="stat-mini">
+        <lucide-icon [img]="stat.icon" class="stat-mini-icon"></lucide-icon>
+        <div class="stat-mini-info">
+          <strong>{{ stat.value }}</strong>
+          <span>{{ stat.label }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonial Highlight -->
+    <div class="sidebar-widget promo-widget" *ngIf="testimonials.length > 0">
+      <h3>Featured Success</h3>
+      <p class="quote">"{{ testimonials[0].text }}"</p>
+      <div class="quote-author">
+        <strong>- {{ testimonials[0].name }}</strong>
+        <span>{{ testimonials[0].role }}</span>
+      </div>
+      <div class="stars">
+        <lucide-icon *ngFor="let i of [1,2,3,4,5]" [img]="StarIcon" class="star"></lucide-icon>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<app-footer></app-footer>
